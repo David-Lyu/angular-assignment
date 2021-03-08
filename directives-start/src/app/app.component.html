@@ -6,6 +6,68 @@
       </button>
       <br /><br />
       <ul class="list-group">
+        <div *appUnless="odd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: num % 2 !== 0 }"
+            [ngStyle]="{
+              backgroundColor: num % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+            *ngFor="let num of oddNums"
+          >
+            {{ num }}
+          </li>
+        </div>
+        <!-- <div *ngIf="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: num % 2 !== 0 }"
+            [ngStyle]="{
+              backgroundColor: num % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+            *ngFor="let num of oddNums"
+          >
+            {{ num }}
+          </li>
+        </div>
+        <div *ngIf="!onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: num % 2 !== 0 }"
+            [ngStyle]="{
+              backgroundColor: num % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+            *ngFor="let num of evenNums"
+          >
+            {{ num }}
+          </li>
+        </div> -->
+      </ul>
+      <ng-template [ngIf]="onlyOdd">
+        <p appBasicHighlight>Only odd</p>
+        <p appBetterHighlight defaultColor="yellow" [highlightColor]="'orange'">
+          Only odd
+        </p>
+      </ng-template>
+      <div [ngSwitch]="value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="100">Value is 100</p>
+        <p *ngSwitchDefault>Value is Default</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ////////////////THis code was original code -->
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">
+        Only show odd numbers
+      </button>
+      <br /><br />
+      <ul class="list-group">
         <div *ngIf="onlyOdd">
           <li
             class="list-group-item"
@@ -32,9 +94,22 @@
         </div>
       </ul>
       <ng-template [ngIf]="onlyOdd">
-        <p appBasicHighlight>Only odd</p>
-        <p appBetterHighlight>Only odd</p>
+        <p appBasicHighlight>Only odd</p> -->
+<!-- <p
+          appBetterHighlight
+          [defaultColor]="'yellow'"
+          [highlightColor]="'orange'"
+        >
+          Only odd
+        </p> -->
+
+<!-- For strings can look at defaultColor and see that you don't need property binding for just giving string values
+          instead just use it as a property and value key like normal html; don't have to use it like this though
+        -->
+<!-- <p appBetterHighlight defaultColor="yellow" [highlightColor]="'orange'">
+          Only odd
+        </p>
       </ng-template>
     </div>
   </div>
-</div>
+</div> -->
