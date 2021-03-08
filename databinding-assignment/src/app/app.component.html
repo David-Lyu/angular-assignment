@@ -1,1 +1,14 @@
-<app-game-control></app-game-control>
+<div class="container">
+  <div class="row">
+    <div class="col-3">{{ data }}</div>
+  </div>
+  <div class="row">
+    <app-game-control (increment)="changeData($event)"></app-game-control>
+  </div>
+  <div class="row">
+    <app-even *ngIf="isEven; else odd"></app-even>
+    <ng-template #odd>
+      <app-odd></app-odd>
+    </ng-template>
+  </div>
+</div>
