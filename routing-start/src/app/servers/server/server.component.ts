@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Data, Params, Router } from '@angular/router';
 
 import { ServersService } from '../servers.service';
 
@@ -18,11 +18,16 @@ export class ServerComponent implements OnInit {
     // const id = +this.route.snapshot.params['id'];
     // console.log(id)
     // this.server = this.serversService.getServer(id);
-    console.log(this.server)
+    // console.log(this.server)
     //only need this if the id is changing on this specific page and reusing the component from the same component
-    this.route.params.subscribe((params: Params) => {
-      this.server = this.serversService.getServer(+params['id']);
-    })
+    // this.route.params.subscribe((params: Params) => {
+    //   this.server = this.serversService.getServer(+params['id']);
+    // })
+    this.route.data.subscribe((data: Data) => {
+      //the ['server'] the server name is what is passed down in the router service
+      this.server = data['server']
+      console.log(this.server)
+    });
   }
 
   onEdit() {
